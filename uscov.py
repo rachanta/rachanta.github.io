@@ -44,14 +44,15 @@ hover = HoverTool(tooltips=tooltips)
 geomap = gv.WMTS(WMTSTileSource(url=\
    'https://server.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer/tile/{Z}/{Y}/{X}.jpg'))
 
-covmap_gv_points.opts(opts.Points(width=1200, height=700, alpha=0.3,
+map = (covmap_gv_points.opts(opts.Points(width=1200, height=700, alpha=0.3,
                 color='orangered', hover_line_color='black',  
                 line_color='black',
                 tools=[hover],size=nth_root(dim('Cases'),3),
-                hover_fill_color=None, hover_fill_alpha=0.5)) * geomap.options(width=1300, height=800, xaxis=None, yaxis=None, show_grid=False, alpha=0.8) 
+                hover_fill_color=None, hover_fill_alpha=0.5)) * geomap.options(width=1300, height=800, xaxis=None, yaxis=None, show_grid=False, alpha=0.8)) 
 
 
 
 out = widgets.Output(layout={'border': '1px solid black'})
 
-out
+with out:
+    display(map)
